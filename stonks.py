@@ -24,7 +24,7 @@ Total profit = 4 + 8 = 12.
 """
 
 class Solution:
-    def stonks(prices):
+    def stonks(self, prices):
         min_price = prices[0]
         max_profit = 0
         for price in prices:
