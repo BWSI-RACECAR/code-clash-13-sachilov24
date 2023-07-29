@@ -1,5 +1,19 @@
+"""
+Copyright MIT BWSI Autonomous RACECAR Course
+MIT License
+Summer 2023
 
-"""""
+Code Clash #13 - Stonks (stonks.py)
+
+
+Author: Chris Lai
+
+Difficulty Level: 8/10
+
+Background: Paul recently got a nice bonus from work and wanted to invest it into the 
+stock market. In order to maximize his profit, Paul analyzed some data from recent 
+transactions in order to find out which combination of buying and selling stocks would 
+net the highest earnings.
 
 Prompt: Given a list of prices (prices[i]) collected throughout the day, find the highest 
 profit that Paul can earn if he buys the stock during any hour of the day and then sells 
@@ -24,14 +38,20 @@ Total profit = 4 + 8 = 12.
 """
 
 class Solution:
-    def stonks(prices):
-        min_price = prices[0]
-        max_profit = 0
+    def stonks(self, prices):
+        if not prices or len(prices) < 2:
+            return 0
+        first_buy = float('inf')
+        second_buy = float('inf')
+        first_profit = 0
+        second_profit = 0
         for price in prices:
-            min_price = min(min_price, price)
-            profit = price - min_price
-            max_profit = max(max_profit, profit)
-        return max_profit  
+            first_buy = min(first_buy, price)
+            first_profit = max(first_profit, price - first_buy)
+            second_buy = min(second_buy, price - first_profit)
+            second_profit = max(second_profit, price - second_buy)
+        return second_profit
+        pass
 
 def main():
     array = input().split(" ")
